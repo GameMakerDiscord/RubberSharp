@@ -3,6 +3,8 @@
 
 **Rubber#** (Rubber Sharp) utility will use the currently active runtime to compile a [GameMaker Studio 2](https://www.yoyogames.com/) project file. It is used with a command line tool or using the C# library.
 
+Maintained by: ImDaveead
+
 ## Command Line Usage
 The simplest way to use Rubber# is with the [command line .exe file](https://github.com/GameMakerDiscord/RubberSharp/releases/latest).
 
