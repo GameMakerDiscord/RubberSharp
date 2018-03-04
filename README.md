@@ -33,8 +33,8 @@ static class Example {
 ```
 
 ## Notes
-- Using a project with Steam enabled is untested
 - Using a project with shaders is untested
 - Exporting to Mac is not implemented
 - Exporting to Linux is not implemented
 - The library used to read .yyp, [YoYoProject](https://github.com/GameMakerDiscord/YoYoProject), is in a work in progress state, so that could break something here.
+    - Using a project containing GMiOSOptions Crashes

@@ -18,8 +18,8 @@ namespace RubberSharp {
 			ColorConsole.Write(ConsoleColor.Green, "Rubber# ");
 			Console.Write("An IGOR Wrapper\n");
 
-			// Check ARGS And Store
-			if(args.Length < 2) {
+			// Check ARGS length, if bad show usage
+			if(args.Length <= 2) {
 				DisplayUsage();
 				return;
 			}
@@ -33,6 +33,20 @@ namespace RubberSharp {
 			config.ExportPlatform = Rubber.ExportPlatformFromString(args[1]);
 			config.ExportType = Rubber.ExportTypeFromString(args[2]);
 
+            switch(config.ExportType) {
+                case ExportType.PackageNsis:
+                case ExportType.PackageZip:
+                    if(args.Length <= 3) {
+                        DisplayUsage();
+                        return;
+                    }
+                    config.ExportOutputLocation = args[3];
+                    break;
+                case ExportType.Run:
+                    // no path used
+                    break;
+            }
+            
 			for(int i = 3; i < args.Length; i++) {
 				switch(args[i]) {
 					case "-debug":
@@ -119,7 +133,7 @@ namespace RubberSharp {
 					macros = Path.Combine(TempPath, "macros.json"),
 					targetOptions = Path.Combine(TempPath, "targetoptions.json"),
 					preferences = Path.Combine(TempPath, "preferences.json"),
-					steamOptions = Path.Combine(TempPath, "steam_options.json"),
+					steamOptions = Path.Combine(TempPath, "steam_options.yy"),
 
 					// Values that are always the same
 					assetCompiler = "",
@@ -180,11 +194,11 @@ namespace RubberSharp {
 
 				process.WaitForExit();
 
+                if(process.ExitCode < 0) throw new Exception("IGOR Failed");
 				Directory.Delete(TempUID, true);
 				return process.ExitCode;
 			} catch(Exception e) {
-				// delete directory then throw
-				Directory.Delete(TempUID, true);
+				// throw and keep directory
 				throw e;
 			}
 		}
