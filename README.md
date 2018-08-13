@@ -1,6 +1,8 @@
 # Rubber\#
 *An IGOR Wrapper Utility*
 
+**Note: Outdated, use [Rubber JS](https://github.com/GameMakerDiscord/rubber)**
+
 **Rubber#** (Rubber Sharp) utility will use the currently active runtime to compile a [GameMaker Studio 2](https://www.yoyogames.com/) project file. It is used with a command line tool or using the C# library.
 
 Maintained by: ImDaveead
